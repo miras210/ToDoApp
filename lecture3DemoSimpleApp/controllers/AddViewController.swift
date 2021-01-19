@@ -17,8 +17,6 @@ class AddViewController: UIViewController {
     var addCallback: ((_ item: ToDoItem)->())?
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
     
 
