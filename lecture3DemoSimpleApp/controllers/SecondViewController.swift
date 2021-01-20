@@ -20,7 +20,6 @@ class SecondViewController: UIViewController {
    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print(arr)
         navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
@@ -71,10 +70,14 @@ extension SecondViewController: UITableViewDelegate, UITableViewDataSource{
         let item = arr[indexPath.row]
         cell.id = item.id ?? 0
         cell.titleLabel.text = item.title
+        if item.deadLine!.compare(Date()) == ComparisonResult.orderedDescending {
+            cell.titleLabel.textColor = .black
+        } else {
+            cell.titleLabel.textColor = .systemRed
+        }
         //cell.subTitleLabel.text = item.subTitle
         let formatter = DateFormatter()
         formatter.dateFormat = "YY/MM/dd"
-        print(formatter.string(from: item.deadLine!))
         cell.subTitleLabel.text = formatter.string(from: item.deadLine!)
         return cell
     }
