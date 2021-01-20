@@ -17,7 +17,6 @@ class TableViewCell: UITableViewCell {
     var id = 0
     var isDone = false
 
-
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -31,6 +30,9 @@ class TableViewCell: UITableViewCell {
     
     @IBAction func changeState(_ sender: Any) {
         self.isDone = !isDone
+        if titleLabel.textColor == .systemRed {
+            return
+        }
         if isDone {
             titleLabel.textColor = .systemGreen
         } else {
