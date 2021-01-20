@@ -36,7 +36,6 @@ class SecondViewController: UIViewController {
         tableView.dataSource = self
         tableView.register(UINib(nibName: cellId, bundle: nil), forCellReuseIdentifier: cellId)
         tableView.tableFooterView = UIView()
-        
     }
     
     @IBAction func add(_ sender: UIBarButtonItem) {
@@ -48,7 +47,6 @@ class SecondViewController: UIViewController {
             self.tableView.reloadData()
         }
         navigationController?.pushViewController(vc, animated: true)
-        tableView.reloadData()
     }
     
 }
@@ -70,15 +68,16 @@ extension SecondViewController: UITableViewDelegate, UITableViewDataSource{
         let item = arr[indexPath.row]
         cell.id = item.id ?? 0
         cell.titleLabel.text = item.title
-        if item.deadLine!.compare(Date()) == ComparisonResult.orderedDescending {
-            cell.titleLabel.textColor = .black
-        } else {
+        arr[indexPath.row].isActive = cell.isDone
+        if Calendar.current.compare(item.deadLine!, to: Date(), toGranularity: .day) == .orderedAscending {
             cell.titleLabel.textColor = .systemRed
+        } else {
+            cell.titleLabel.textColor = .black
         }
-        //cell.subTitleLabel.text = item.subTitle
+        cell.subTitleLabel.text = item.subTitle
         let formatter = DateFormatter()
         formatter.dateFormat = "YY/MM/dd"
-        cell.subTitleLabel.text = formatter.string(from: item.deadLine!)
+        cell.dateLabel.text = formatter.string(from: item.deadLine!)
         return cell
     }
     

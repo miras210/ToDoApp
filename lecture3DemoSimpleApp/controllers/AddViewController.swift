@@ -27,7 +27,7 @@ class AddViewController: UIViewController {
             navigationController?.popViewController(animated: true)
             return
         }
-        addCallback?(ToDoItem(id: delegate?.getCounterId(), title: text, deadLine: itemDate.date, subTitle: "Empty", isActive: true))
+        addCallback?(ToDoItem(id: delegate?.getCounterId(), title: text, deadLine: itemDate.date, subTitle: "Empty", isActive: false))
         navigationController?.popViewController(animated: true)
     }
 
